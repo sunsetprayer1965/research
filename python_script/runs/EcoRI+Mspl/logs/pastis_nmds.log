@@ -1,0 +1,288 @@
+RUNNING THE L-BFGS-B CODE
+
+           * * *
+
+Machine precision = 2.220D-16
+ N =         3648     M =           10
+
+At X0         0 variables are exactly at the bounds
+
+At iterate    0    f=  2.33020D+06    |proj g|=  6.38328D+03
+
+At iterate    1    f=  1.48546D+06    |proj g|=  4.91073D+03
+
+At iterate    2    f=  1.18534D+05    |proj g|=  8.24306D+02
+
+At iterate    3    f=  1.15382D+05    |proj g|=  5.95956D+02
+
+At iterate    4    f=  1.07988D+05    |proj g|=  3.63485D+02
+
+At iterate    5    f=  1.04613D+05    |proj g|=  6.03405D+02
+
+At iterate    6    f=  1.00373D+05    |proj g|=  4.97312D+02
+
+At iterate    7    f=  9.49917D+04    |proj g|=  1.18499D+03
+
+At iterate    8    f=  8.98684D+04    |proj g|=  3.15195D+02
+
+At iterate    9    f=  8.69388D+04    |proj g|=  7.04209D+02
+
+At iterate   10    f=  8.36870D+04    |proj g|=  2.12783D+02
+
+At iterate   11    f=  8.08967D+04    |proj g|=  2.28309D+02
+
+At iterate   12    f=  7.84152D+04    |proj g|=  1.06543D+03
+
+At iterate   13    f=  7.55485D+04    |proj g|=  2.33055D+02
+
+At iterate   14    f=  7.40777D+04    |proj g|=  2.35457D+02
+
+At iterate   15    f=  7.26803D+04    |proj g|=  4.80935D+02
+
+At iterate   16    f=  7.14970D+04    |proj g|=  2.28924D+02
+
+At iterate   17    f=  7.06618D+04    |proj g|=  4.24723D+02
+
+At iterate   18    f=  7.00448D+04    |proj g|=  3.24740D+02
+
+At iterate   19    f=  6.93166D+04    |proj g|=  1.90282D+02
+
+At iterate   20    f=  6.88650D+04    |proj g|=  9.59996D+01
+
+At iterate   21    f=  6.84187D+04    |proj g|=  1.80664D+02
+
+At iterate   22    f=  6.80367D+04    |proj g|=  2.02990D+02
+
+At iterate   23    f=  6.76153D+04    |proj g|=  1.76204D+02
+
+At iterate   24    f=  6.72379D+04    |proj g|=  1.62937D+02
+
+At iterate   25    f=  6.70135D+04    |proj g|=  1.48059D+02
+
+At iterate   26    f=  6.68409D+04    |proj g|=  1.07081D+02
+
+At iterate   27    f=  6.67087D+04    |proj g|=  1.27809D+02
+
+At iterate   28    f=  6.65850D+04    |proj g|=  8.21028D+01
+
+At iterate   29    f=  6.64532D+04    |proj g|=  7.79128D+01
+
+At iterate   30    f=  6.63180D+04    |proj g|=  8.98695D+01
+
+At iterate   31    f=  6.61776D+04    |proj g|=  8.04382D+01
+
+At iterate   32    f=  6.60810D+04    |proj g|=  8.25827D+01
+
+At iterate   33    f=  6.60098D+04    |proj g|=  6.16570D+01
+
+At iterate   34    f=  6.59792D+04    |proj g|=  8.09860D+01
+
+At iterate   35    f=  6.59739D+04    |proj g|=  1.28383D+02
+
+           * * *
+
+Tit   = total number of iterations
+Tnf   = total number of function evaluations
+Tnint = total number of segments explored during Cauchy searches
+Skip  = number of BFGS updates skipped
+Nact  = number of active bounds at final generalized Cauchy point
+Projg = norm of the final projected gradient
+F     = final function value
+
+           * * *
+
+   N    Tit     Tnf  Tnint  Skip  Nact     Projg        F
+ 3648     35     39      1     0     0   1.284D+02   6.597D+04
+  F =   65973.861863806203     
+
+CONVERGENCE: REL_REDUCTION_OF_F_<=_FACTR*EPSMCH             
+RUNNING THE L-BFGS-B CODE
+
+           * * *
+
+Machine precision = 2.220D-16
+ N =         3648     M =           10
+
+At X0         0 variables are exactly at the bounds
+
+At iterate    0    f=  6.79329D+04    |proj g|=  5.88004D+02
+
+At iterate    1    f=  6.13973D+04    |proj g|=  2.77641D+02
+
+At iterate    2    f=  6.07018D+04    |proj g|=  7.93715D+01
+
+At iterate    3    f=  6.05972D+04    |proj g|=  4.62655D+01
+
+At iterate    4    f=  6.05327D+04    |proj g|=  2.51086D+01
+
+At iterate    5    f=  6.04970D+04    |proj g|=  2.13798D+01
+
+At iterate    6    f=  6.04675D+04    |proj g|=  2.15329D+01
+
+At iterate    7    f=  6.04518D+04    |proj g|=  2.20732D+01
+
+At iterate    8    f=  6.04341D+04    |proj g|=  1.51132D+01
+
+At iterate    9    f=  6.04167D+04    |proj g|=  1.62304D+01
+
+At iterate   10    f=  6.03989D+04    |proj g|=  1.90419D+01
+
+At iterate   11    f=  6.03754D+04    |proj g|=  3.42683D+01
+
+At iterate   12    f=  6.03573D+04    |proj g|=  4.12140D+01
+
+At iterate   13    f=  6.03390D+04    |proj g|=  2.39246D+01
+
+At iterate   14    f=  6.03254D+04    |proj g|=  1.68406D+01
+
+At iterate   15    f=  6.03174D+04    |proj g|=  1.66876D+01
+/usr/local/lib/python3.8/site-packages/pastis/externals/iced/normalization/_ca_utils.py:8: UserWarning: The API of this module is likely to change. Use only for testing purposes
+  warnings.warn(
+/usr/local/lib/python3.8/site-packages/iced/normalization/_ca_utils.py:8: UserWarning: The API of this module is likely to change. Use only for testing purposes
+  warnings.warn(
+/usr/local/lib/python3.8/site-packages/pastis/fastio.py:7: UserWarning: The module pastis.fastio is deprecated. The packaged iced has identical features and should be used instead. This module will be removed in version 0.5
+  warnings.warn(
+/usr/local/lib/python3.8/site-packages/iced/io/_io_pandas.py:56: UserWarning: Attempting to guess whether counts are 0 or 1 based
+  warnings.warn(
+/usr/local/lib/python3.8/site-packages/pastis/optimization/mds.py:85: FutureWarning: elementwise comparison failed; returning scalar instead, but in the future will perform elementwise comparison
+  if ini is None or ini == "random":
+/usr/local/lib/python3.8/site-packages/pastis/optimization/mds.py:85: FutureWarning: elementwise comparison failed; returning scalar instead, but in the future will perform elementwise comparison
+  if ini is None or ini == "random":
+/usr/local/lib/python3.8/site-packages/pastis/optimization/mds.py:85: FutureWarning: elementwise comparison failed; returning scalar instead, but in the future will perform elementwise comparison
+  if ini is None or ini == "random":
+/usr/local/lib/python3.8/site-packages/pastis/optimization/mds.py:85: FutureWarning: elementwise comparison failed; returning scalar instead, but in the future will perform elementwise comparison
+  if ini is None or ini == "random":
+writing wish distances
+ This problem is unconstrained.
+ This problem is unconstrained.
+ This problem is unconstrained.
+ This problem is unconstrained.
+ This problem is unconstrained.
+
+           * * *
+
+Tit   = total number of iterations
+Tnf   = total number of function evaluations
+Tnint = total number of segments explored during Cauchy searches
+Skip  = number of BFGS updates skipped
+Nact  = number of active bounds at final generalized Cauchy point
+Projg = norm of the final projected gradient
+F     = final function value
+
+           * * *
+
+   N    Tit     Tnf  Tnint  Skip  Nact     Projg        F
+ 3648     15     16      1     0     0   1.669D+01   6.032D+04
+  F =   60317.382849110290     
+
+CONVERGENCE: REL_REDUCTION_OF_F_<=_FACTR*EPSMCH             
+RUNNING THE L-BFGS-B CODE
+
+           * * *
+
+Machine precision = 2.220D-16
+ N =         3648     M =           10
+
+At X0         0 variables are exactly at the bounds
+
+At iterate    0    f=  6.65838D+04    |proj g|=  4.62458D+02
+
+At iterate    1    f=  6.02260D+04    |proj g|=  1.29269D+02
+
+At iterate    2    f=  6.00729D+04    |proj g|=  5.72559D+01
+
+At iterate    3    f=  6.00461D+04    |proj g|=  3.03141D+01
+
+At iterate    4    f=  6.00327D+04    |proj g|=  1.39308D+01
+
+At iterate    5    f=  6.00266D+04    |proj g|=  1.24254D+01
+
+           * * *
+
+Tit   = total number of iterations
+Tnf   = total number of function evaluations
+Tnint = total number of segments explored during Cauchy searches
+Skip  = number of BFGS updates skipped
+Nact  = number of active bounds at final generalized Cauchy point
+Projg = norm of the final projected gradient
+F     = final function value
+
+           * * *
+
+   N    Tit     Tnf  Tnint  Skip  Nact     Projg        F
+ 3648      5      6      1     0     0   1.243D+01   6.003D+04
+  F =   60026.599219272990     
+
+CONVERGENCE: REL_REDUCTION_OF_F_<=_FACTR*EPSMCH             
+RUNNING THE L-BFGS-B CODE
+
+           * * *
+
+Machine precision = 2.220D-16
+ N =         3648     M =           10
+
+At X0         0 variables are exactly at the bounds
+
+At iterate    0    f=  6.64799D+04    |proj g|=  4.64317D+02
+
+At iterate    1    f=  6.00469D+04    |proj g|=  1.00570D+02
+
+At iterate    2    f=  6.00075D+04    |proj g|=  5.01212D+01
+
+At iterate    3    f=  5.99853D+04    |proj g|=  2.16487D+01
+
+At iterate    4    f=  5.99806D+04    |proj g|=  1.57292D+01
+
+           * * *
+
+Tit   = total number of iterations
+Tnf   = total number of function evaluations
+Tnint = total number of segments explored during Cauchy searches
+Skip  = number of BFGS updates skipped
+Nact  = number of active bounds at final generalized Cauchy point
+Projg = norm of the final projected gradient
+F     = final function value
+
+           * * *
+
+   N    Tit     Tnf  Tnint  Skip  Nact     Projg        F
+ 3648      4      5      1     0     0   1.573D+01   5.998D+04
+  F =   59980.621542672881     
+
+CONVERGENCE: REL_REDUCTION_OF_F_<=_FACTR*EPSMCH             
+RUNNING THE L-BFGS-B CODE
+
+           * * *
+
+Machine precision = 2.220D-16
+ N =         3648     M =           10
+
+At X0         0 variables are exactly at the bounds
+
+At iterate    0    f=  6.64616D+04    |proj g|=  5.03360D+02
+
+At iterate    1    f=  6.00781D+04    |proj g|=  9.41320D+01
+
+At iterate    2    f=  5.99961D+04    |proj g|=  6.18197D+01
+
+At iterate    3    f=  5.99810D+04    |proj g|=  3.63681D+01
+
+At iterate    4    f=  5.99722D+04    |proj g|=  2.20822D+01
+
+           * * *
+
+Tit   = total number of iterations
+Tnf   = total number of function evaluations
+Tnint = total number of segments explored during Cauchy searches
+Skip  = number of BFGS updates skipped
+Nact  = number of active bounds at final generalized Cauchy point
+Projg = norm of the final projected gradient
+F     = final function value
+
+           * * *
+
+   N    Tit     Tnf  Tnint  Skip  Nact     Projg        F
+ 3648      4      5      1     0     0   2.208D+01   5.997D+04
+  F =   59972.176421311131     
+
+CONVERGENCE: REL_REDUCTION_OF_F_<=_FACTR*EPSMCH             

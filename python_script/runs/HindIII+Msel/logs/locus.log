@@ -1,0 +1,20 @@
+[locus] START
+[locus] dataset_dir=/data
+[locus] bed=/app/duan.SC.10000.raw_sub.bed
+[locus] out=/app/duan.SC.10000.raw_sub.matrix
+[locus] inter_file = /data/interactions_HindIII_MseI_beforeFDR_inter.txt
+[locus] intra_file = /data/interactions_HindIII_MseI_beforeFDR_intra_all.txt
+[locus] loading bed...
+[locus] bed loaded rows=1216
+[locus] building lookup...
+[locus] lookup built for 16 chromosomes
+[locus] loading inter...
+[locus] inter loaded rows=2312898
+[locus] loading intra...
+[locus] intra loaded rows=340020
+[locus] mapping inter with lookup...
+[locus] inter mapped rows: 2312898
+[locus] mapping intra with lookup...
+[locus] intra mapped rows: 340020
+[locus] wrote: /app/duan.SC.10000.raw_sub.matrix
+[locus] rows: 624378

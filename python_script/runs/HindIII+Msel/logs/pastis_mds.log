@@ -1,0 +1,115 @@
+/usr/local/lib/python3.8/site-packages/pastis/externals/iced/normalization/_ca_utils.py:8: UserWarning: The API of this module is likely to change. Use only for testing purposes
+  warnings.warn(
+/usr/local/lib/python3.8/site-packages/iced/normalization/_ca_utils.py:8: UserWarning: The API of this module is likely to change. Use only for testing purposes
+  warnings.warn(
+/usr/local/lib/python3.8/site-packages/pastis/fastio.py:7: UserWarning: The module pastis.fastio is deprecated. The packaged iced has identical features and should be used instead. This module will be removed in version 0.5
+  warnings.warn(
+/usr/local/lib/python3.8/site-packages/iced/io/_io_pandas.py:56: UserWarning: Attempting to guess whether counts are 0 or 1 based
+  warnings.warn(
+ This problem is unconstrained.
+RUNNING THE L-BFGS-B CODE
+
+           * * *
+
+Machine precision = 2.220D-16
+ N =         3648     M =           10
+
+At X0         0 variables are exactly at the bounds
+
+At iterate    0    f=  2.77374D+06    |proj g|=  7.22853D+03
+
+At iterate    1    f=  1.79222D+06    |proj g|=  5.61035D+03
+
+At iterate    2    f=  1.29974D+05    |proj g|=  4.50351D+02
+
+At iterate    3    f=  1.26953D+05    |proj g|=  3.01824D+02
+
+At iterate    4    f=  1.19166D+05    |proj g|=  1.32642D+03
+
+At iterate    5    f=  1.12308D+05    |proj g|=  2.67044D+02
+
+At iterate    6    f=  1.06833D+05    |proj g|=  3.17083D+02
+
+At iterate    7    f=  1.01754D+05    |proj g|=  2.88893D+02
+
+At iterate    8    f=  9.71601D+04    |proj g|=  4.94472D+02
+
+At iterate    9    f=  9.17854D+04    |proj g|=  4.62056D+02
+
+At iterate   10    f=  8.34289D+04    |proj g|=  6.34824D+02
+
+At iterate   11    f=  7.73725D+04    |proj g|=  5.89009D+02
+
+At iterate   12    f=  7.58964D+04    |proj g|=  5.20414D+02
+
+At iterate   13    f=  7.31803D+04    |proj g|=  4.38138D+02
+
+At iterate   14    f=  7.09664D+04    |proj g|=  2.30035D+02
+
+At iterate   15    f=  6.94444D+04    |proj g|=  5.73431D+02
+
+At iterate   16    f=  6.83718D+04    |proj g|=  2.19512D+02
+
+At iterate   17    f=  6.77014D+04    |proj g|=  2.42539D+02
+
+At iterate   18    f=  6.71717D+04    |proj g|=  1.67143D+02
+
+At iterate   19    f=  6.67035D+04    |proj g|=  1.27818D+02
+
+At iterate   20    f=  6.62679D+04    |proj g|=  2.48849D+02
+
+At iterate   21    f=  6.59563D+04    |proj g|=  1.12047D+02
+
+At iterate   22    f=  6.56997D+04    |proj g|=  7.54536D+01
+
+At iterate   23    f=  6.54999D+04    |proj g|=  7.38746D+01
+
+At iterate   24    f=  6.54278D+04    |proj g|=  8.22102D+01
+
+At iterate   25    f=  6.53162D+04    |proj g|=  7.35809D+01
+
+At iterate   26    f=  6.52384D+04    |proj g|=  3.29460D+01
+
+At iterate   27    f=  6.51816D+04    |proj g|=  4.11254D+01
+
+At iterate   28    f=  6.51176D+04    |proj g|=  5.78665D+01
+
+At iterate   29    f=  6.50728D+04    |proj g|=  1.22533D+02
+
+At iterate   30    f=  6.50355D+04    |proj g|=  2.12608D+01
+
+At iterate   31    f=  6.50152D+04    |proj g|=  5.61693D+01
+
+At iterate   32    f=  6.49904D+04    |proj g|=  3.21823D+01
+
+At iterate   33    f=  6.49642D+04    |proj g|=  4.06858D+01
+
+At iterate   34    f=  6.49365D+04    |proj g|=  3.98607D+01
+
+At iterate   35    f=  6.49139D+04    |proj g|=  2.93457D+01
+
+At iterate   36    f=  6.48917D+04    |proj g|=  4.72295D+01
+
+At iterate   37    f=  6.48765D+04    |proj g|=  6.72570D+01
+
+At iterate   38    f=  6.48596D+04    |proj g|=  4.44784D+01
+
+At iterate   39    f=  6.48487D+04    |proj g|=  8.53714D+01
+
+           * * *
+
+Tit   = total number of iterations
+Tnf   = total number of function evaluations
+Tnint = total number of segments explored during Cauchy searches
+Skip  = number of BFGS updates skipped
+Nact  = number of active bounds at final generalized Cauchy point
+Projg = norm of the final projected gradient
+F     = final function value
+
+           * * *
+
+   N    Tit     Tnf  Tnint  Skip  Nact     Projg        F
+ 3648     39     44      1     0     0   8.537D+01   6.485D+04
+  F =   64848.725951296561     
+
+CONVERGENCE: REL_REDUCTION_OF_F_<=_FACTR*EPSMCH             
