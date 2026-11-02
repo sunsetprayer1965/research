@@ -21,7 +21,7 @@ def split_chromosomes(input_file, output_dir):
         else:
             chrom_data.append(line)
 
-    # 写最后一个
+    # Write the final chromosome, if any.
     if chrom_data:
         output_path = os.path.join(output_dir, f"{chrom_index}.txt")
         with open(output_path, 'w') as out_file:
@@ -32,7 +32,7 @@ def split_chromosomes(input_file, output_dir):
 
 
 # ==========================
-# 一次性处理多个文件
+# Process multiple files in one run.
 # ==========================
 
 base_path = "."

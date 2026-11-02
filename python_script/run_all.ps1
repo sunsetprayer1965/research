@@ -4,15 +4,15 @@ $ROOT = "C:\Users\weilu\Desktop\research william luo\python_script"
 $DATASET_ROOT = Join-Path $ROOT "dataset_linking_number"
 $RUNS_ROOT = Join-Path $ROOT "runs"
 
-# ===== 只跑一个 dataset（先测试这个）=====
+# ===== Process only one dataset (for an initial test) =====
 #$datasets = @("HindIII+EcoRI")
 
-# ===== 如果以后想跑全部，把上面注释掉，改成下面这行 =====
+# ===== To process all datasets, uncomment the line above and use this line instead. =====
 $datasets = Get-ChildItem -Path $DATASET_ROOT -Directory | Select-Object -ExpandProperty Name
 
 New-Item -ItemType Directory -Force -Path $RUNS_ROOT | Out-Null
 
-# ===== 先编译 Java（只一次）=====
+# ===== Compile Java once before processing datasets. =====
 Push-Location (Join-Path $ROOT "java\computewritec")
 javac -encoding UTF-8 -d . ComputeWriteC3.java
 Pop-Location
@@ -33,7 +33,7 @@ foreach ($ds in $datasets) {
         continue
     }
 
-    # ===== 清理旧结果，避免干扰 =====
+    # ===== Remove old results to avoid mixing them with this run. =====
     if (Test-Path $runDir) {
         Remove-Item $runDir -Recurse -Force
     }
@@ -42,12 +42,12 @@ foreach ($ds in $datasets) {
     New-Item -ItemType Directory -Force -Path (Join-Path $runDir "logs") | Out-Null
     New-Item -ItemType Directory -Force -Path (Join-Path $runDir "linking") | Out-Null
 
-    # ===== 把 config.ini 和 bed 复制到 runDir =====
+    # ===== Copy config.ini and the BED file into runDir. =====
     Copy-Item (Join-Path $ROOT "config.ini") $runDir -Force
     Copy-Item (Join-Path $ROOT "duan.SC.10000.raw_sub.bed") $runDir -Force
 
-    # ===== Docker 内按顺序跑完整链路 =====
-    # ===== 生成容器内要跑的脚本文件（写到 runDir，也就是 /app）=====
+    # ===== Run the full pipeline in Docker, in order. =====
+    # ===== Write the container script into runDir, which is mounted as /app. =====
 $shPath = Join-Path $runDir "pipeline.sh"
 
 $cmd = @'
@@ -79,25 +79,25 @@ python3 -u /repo/java/chromosome/split.py --base_path . > /app/logs/split.log 2>
 echo "[INFO] container pipeline done."
 '@
 
-# ✅ 关键：强制 LF（避免 \r）
+# Force LF line endings to avoid carriage returns.
 $cmd = $cmd -replace "`r`n", "`n"
 
-# ✅ 写脚本到 runDir（/app），用 UTF8 不带 BOM 更稳
+# Write the script into runDir (/app) as UTF-8 without a BOM.
 $utf8NoBom = New-Object System.Text.UTF8Encoding($false)
 [System.IO.File]::WriteAllText($shPath, $cmd, $utf8NoBom)
 
-# ===== Docker 执行脚本文件（不再把多行塞进 -lc 参数）=====
+# ===== Run the script file in Docker instead of passing multiline text to -lc. =====
 docker run --rm `
   -v "${runDir}:/app" `
   -v "${dsDir}:/data:ro" `
   -v "${ROOT}:/repo:ro" `
   pastis bash /app/pipeline.sh
 
-# ✅ 必须检查 docker 成败，否则你会继续跑 Java 然后假装 Finished
+# Check Docker's exit code so Java does not run after a failed pipeline.
 if ($LASTEXITCODE -ne 0) {
     throw "Docker pipeline failed for dataset [$ds], exit code = $LASTEXITCODE"
 }
-    # ===== Java 本机：读取 split 结果，输出 linking =====
+    # ===== Run Java locally to read the split results and write linking frequencies. =====
     $resultDir = Join-Path $runDir "linking"
     $mds  = Join-Path $runDir "MDS_split"
     $nmds = Join-Path $runDir "NMDS_split"

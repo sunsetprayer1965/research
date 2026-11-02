@@ -18,24 +18,24 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class ComputeWriteC3 {
 
-    // ====== 与 C2 一样的全局变量/常量 ======
+    // ====== Global variables and constants, as in C2 ======
     static int numberOfSample;
     static String[] listChromosomeFilePaths;
 
-    // ✅ 你自己改成你想要的输出目录（保持 C2 风格：写死 Windows 路径）
+    // Set the desired output directory here if needed (C2-style hard-coded Windows path).
     // static final String RESULT_DIR = "C:\\Users\\weilu\\Desktop\\research william luo\\python_script\\java\\RESULT";
 
-    // ====== 路径构造（与 C2 一样：baseDir + "/1.txt" ...） ======
+    // ====== Build paths as in C2: baseDir + "/1.txt", etc. ======
     public static String[] create_Strings(int simpleSize, String baseDir) {
         String[] solution = new String[simpleSize];
         for (int i = 0; i < simpleSize; i++) {
             int j = i + 1;
-            solution[i] = baseDir + "/" + j + ".txt"; // 用 / 避免转义
+            solution[i] = baseDir + "/" + j + ".txt"; // Use / to avoid escaping.
         }
         return solution;
     }
 
-    // ====== 统计该目录下连续存在的 1.txt, 2.txt, ...（与 C2 一样） ======
+    // ====== Count consecutive 1.txt, 2.txt, ... files in the directory, as in C2 ======
     public static int countSequentialTxtFiles(String baseDir) {
         int count = 0;
         while (true) {
@@ -46,7 +46,7 @@ public class ComputeWriteC3 {
         return count;
     }
 
-    // ====== main：结构/输出行为保持 C2 一样，仅把 Monte Carlo(k) 并行化 ======
+    // ====== main: retain C2's structure and output; parallelize only the Monte Carlo (k) loop ======
     public static void main(String[] args) throws FileNotFoundException, IOException {
 
 
@@ -64,22 +64,22 @@ public class ComputeWriteC3 {
         final int threads = 8;
         for (String baseDir : baseDirs) {
 
-            // 1) 统计样本数
+            // 1) Count the input files.
             numberOfSample = countSequentialTxtFiles(baseDir);
             if (numberOfSample == 0) {
                 System.out.println("⚠️ 目录没有发现 1.txt, 2.txt... : " + baseDir);
                 continue;
             }
 
-            // 2) 构造文件列表
+            // 2) Build the input file list.
             listChromosomeFilePaths = create_Strings(numberOfSample, baseDir);
 
-            // 3) label：目录最后一段
+            // 3) Use the directory's last component as the label.
             String label = baseDir.replace('\\', '/');
             int lastSlash = label.lastIndexOf('/');
             label = (lastSlash >= 0) ? label.substring(lastSlash + 1) : label;
 
-            // 4) 输出文件（每个目录一个 txt，和 C2 一样）
+            // 4) Create one output text file per directory, as in C2.
             java.io.File resultDir = new java.io.File(RESULT_DIR);
             resultDir.mkdirs();
 
@@ -93,7 +93,7 @@ public class ComputeWriteC3 {
             System.out.println("▶ Output file:       " + outPath.getAbsolutePath());
             System.out.println("========================");
 
-            // 5) 写文件：每行一个 pair 的百分比（与 C2 一样）
+            // 5) Write one pair's percentage per line, as in C2.
             try (FileWriter fw = new FileWriter(outPath);
                  PrintWriter out = new PrintWriter(new BufferedWriter(fw))) {
 
@@ -106,11 +106,11 @@ public class ComputeWriteC3 {
                         System.out.println("  Comparing with Chromosome " + (j + 1));
                         double[][] v2 = loadChromosomeFromFile(listChromosomeFilePaths[j]);
 
-                        // ✅ 这里是唯一“算法层面”的改变：把 k 循环并行化
+                        // This is the only algorithmic change: parallelize the k loop.
                         double freq = probabilityParallel(v1, v2, numberOfPoints, threads);
 
                         System.out.println("  Final link probability: " + freq);
-                        out.println(freq * 100.0); // 与 C2 完全一致：输出百分比
+                        out.println(freq * 100.0); // Same as C2: write percentages.
                     }
                 }
             }
@@ -122,8 +122,8 @@ public class ComputeWriteC3 {
     }
 
     // =====================================================================
-    // ✅ 与 C2 逻辑等价的概率计算：只是把 Monte Carlo(k) 并行化
-    // 仍然调用 sampleTwoPoints + addedVector + compute_link_state
+    // Probability calculation equivalent to C2, with the Monte Carlo (k) loop parallelized.
+    // Still calls sampleTwoPoints + addedVector + compute_link_state.
     // =====================================================================
     static double probabilityParallel(double[][] v1, double[][] v2, int numberOfPoints, int threads) {
 
@@ -143,7 +143,7 @@ public class ComputeWriteC3 {
                     int local = 0;
                     for (int k = start; k < end; k++) {
 
-                        // ======= 以下三步保持 C2 完全一致 =======
+                        // ======= These three steps are unchanged from C2. =======
                         double[][] randomPoints = sampleTwoPoints();
                         double[][] v1Aug = addedVector(v1, randomPoints[0]);
                         double[][] v2Aug = addedVector(v2, randomPoints[1]);
@@ -170,7 +170,7 @@ public class ComputeWriteC3 {
     }
 
     // =====================================================================
-    // ================== 以下：全部沿用 C2 原算法实现 ======================
+    // ================== The original C2 algorithm implementation follows. ==================
     // =====================================================================
 
     public static double compute_link_state(double pathVect1[][], double pathVect2[][]) {

@@ -1,13 +1,13 @@
-# eb_heteroN.py  —— 每列用自己的 N_k（推荐）
+# eb_heteroN.py — use a separate N_k for each column (recommended).
 import numpy as np
 
-# 百分比 -> 比例
+# Convert percentages to proportions.
 perc = np.array([
     8, 8.5, 9.333333333333334, 8.25, 9, 9, 9, 8.625, 8.444444444444445, 8.4,
     8.09090909090909, 8.166666666666666, 8.307692307692308, 8.428571428571429,
     8.4, 8.625, 8.588235294117647, 8.666666666666668, 9.05263157894737, 9.25
 ], float)
-N = np.arange(100, 2001, 100, float)   # 各自的 N_k
+N = np.arange(100, 2001, 100, float)   # Sample size N_k for each observation.
 
 r = perc / 100.0
 Y = r * N
@@ -18,7 +18,7 @@ mean_invN = np.mean(1.0 / N)
 
 tau2_hat = max(S2 - r_bar * (1.0 - r_bar) * mean_invN, 0.0)
 if tau2_hat == 0.0:
-    v_hat = 1e12  # 近似全收缩
+    v_hat = 1e12  # Approximate complete shrinkage.
 else:
     v_hat = max((r_bar * (1.0 - r_bar)) / tau2_hat - 1.0, 1e-6)
 

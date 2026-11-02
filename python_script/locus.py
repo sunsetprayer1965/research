@@ -45,7 +45,7 @@ def load_locus_assignment(bed_path: str) -> pd.DataFrame:
 
     locus_assignment["locus"] = pd.to_numeric(locus_assignment["locus"], errors="coerce")
 
-    # 防御：清理异常行
+    # Clean up malformed rows defensively.
     locus_assignment = locus_assignment.dropna(subset=["chromosome", "pair1", "pair2", "locus"])
     locus_assignment = locus_assignment.astype({"chromosome": int, "pair1": int, "pair2": int})
 
@@ -82,8 +82,8 @@ def build_lookup(locus_assignment: pd.DataFrame):
         max_pair = int(g["pair2"].max())
         arr = np.full(max_pair + 1, np.nan, dtype=float)
 
-        # 填充区间：pair1..pair2 -> locus
-        # 这里用 for 循环遍历 bed 行数（通常远小于 interactions 行数，所以很快）
+        # Fill the interval pair1..pair2 with its locus value.
+        # This loops over BED rows, which are usually far fewer than interaction rows.
         for p1, p2, loc in g[["pair1", "pair2", "locus"]].itertuples(index=False, name=None):
             if p2 >= 0:
                 p1 = max(p1, 0)
@@ -105,7 +105,7 @@ def map_with_lookup(df: pd.DataFrame, lookup, name: str) -> pd.DataFrame:
     locus1_mapped = np.full(len(df), np.nan, dtype=float)
     locus2_mapped = np.full(len(df), np.nan, dtype=float)
 
-    # 按 chr 分组，避免逐行查字典
+    # Group by chromosome to avoid row-by-row dictionary lookups.
     for chrom in sorted(set(df["chr1"].unique())):
         arr = lookup.get(int(chrom))
         if arr is None:
@@ -192,23 +192,23 @@ if __name__ == "__main__":
     main()
 
 
-# 1) 我是怎么把 locus.py 提速的（简单总结）
+# 1) How locus.py was optimized (brief summary)
 
-# 你原来的慢点在这里：
+# The original bottleneck was here:
 
-# 对 interactions 的每一行都 apply(axis=1)
+# Applying a function to every interactions row with apply(axis=1).
 
-# 每一行都去 locus_assignment DataFrame 里做一次过滤：
+# Each row filtered the locus_assignment DataFrame:
 # (chrom==...) & (pair1<=idx) & (pair2>=idx)
-# 这等于“Python 循环 × DataFrame筛选”，遇到你这种百万级行数会非常慢。
+# This combines a Python loop with DataFrame filtering and is very slow for millions of rows.
 
-# 我做的提速核心是：
+# The main optimization is:
 
-# 用 bed 的区间信息先构建一个查表结构（lookup）：
-# lookup[chrom][pair_index] = locus（一个 numpy 数组）
+# Build a lookup table from the BED intervals first:
+# lookup[chrom][pair_index] = locus (stored in a NumPy array).
 
-# mapping 时不再逐行筛 DataFrame，而是向量化查表：
+# Map positions with vectorized lookups instead of filtering the DataFrame row by row:
 # locus1_mapped = lookup[chr1][locus1]
 # locus2_mapped = lookup[chr2][locus2]
 
-# 这样 mapping 变成 O(N) 的数组索引，通常能快一个数量级以上（你刚刚 log 也验证了）。
+# Mapping then becomes O(N) array indexing, which is typically an order of magnitude faster.

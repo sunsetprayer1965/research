@@ -2,13 +2,13 @@ package computewritec;
 
 public class test {
     public static void main(String[] args) throws Exception {
-        // 这里先用 Panel_1 的 1.txt 和 2.txt 做对拍
+        // First compare the results using 1.txt and 2.txt from Panel_1.
         double[][] v1 = ComputeWriteC3.loadChromosomeFromFile(
             "C:\\Users\\weilu\\Downloads\\Panels (1)\\Panels\\Panel_1\\1.txt");
         double[][] v2 = ComputeWriteC3.loadChromosomeFromFile(
             "C:\\Users\\weilu\\Downloads\\Panels (1)\\Panels\\Panel_1\\2.txt");
 
-        int K = 300; // 只跑前 5 个
+        int K = 300; // Number of random samples to compare.
         double[][][] pts = ComputeWriteC3.pregenRandomPoints(20241011L, K);
 
         int mismatch = 0;

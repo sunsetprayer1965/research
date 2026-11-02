@@ -31,23 +31,23 @@ public class ComputeWriteC2 {
      * @param args the command line arguments
      */
     
-    static int numberOfSample;                 // 不给初值
-    static String[] listChromosomeFilePaths;   // 不调用 create_Strings
+    static int numberOfSample;                 // Set at runtime.
+    static String[] listChromosomeFilePaths;   // Populated without calling create_Strings here.
     static final String RESULT_DIR = "C:/Users/weilu/Desktop/research william luo/HindIII+Mspl before FDR/java/RESULT";
 
 // Create a string of paths  
-    // === 把原来的 create_Strings(...) 替换成带 baseDir 的版本 ===
+    // === Replacement for create_Strings(...) that accepts baseDir ===
   public static String[] create_Strings(int simpleSize, String baseDir){
       String[] solution = new String[simpleSize];
       for (int i = 0; i < simpleSize; i++){
           int j = i + 1;
-          // 用正斜杠，避免转义烦恼
+          // Use forward slashes to avoid escaping issues.
           solution[i] = baseDir + "/" + j + ".txt";
       }
       return solution;
   }
 
-  // === 新增：统计该目录下 1.txt, 2.txt, ... 连续存在到哪里 ===
+  // === Count consecutive files named 1.txt, 2.txt, ... in the directory ===
   public static int countSequentialTxtFiles(String baseDir){
       int count = 0;
       while (true){
@@ -61,10 +61,10 @@ public class ComputeWriteC2 {
       return count;
   }
 
-  // === 把原来的 main(...) 全部替换为这一版 ===
+  // === Replacement for the original main(...) ===
   public static void main(String[] args) throws FileNotFoundException, IOException {
 
-      // 你要跑的四个输入目录（用 / 写法更稳）
+      // Input directories to process (forward slashes are more portable).
       String[] baseDirs = new String[]{
           "C:\\Users\\weilu\\Downloads\\Panels (1)\\Panels\\Panel_1",
           "C:\\Users\\weilu\\Downloads\\Panels (1)\\Panels\\Panel_2"
@@ -73,26 +73,26 @@ public class ComputeWriteC2 {
           // "C:/Users/weilu/Desktop/research william luo/HindIII+Mspl before FDR/java/output_chroms_msplPM2"
       };
 
-      int numberOfPoints = 1000; // Monte Carlo 次数（可调）
+      int numberOfPoints = 1000; // Number of Monte Carlo samples (adjustable).
 
       for (String baseDir : baseDirs){
 
-          // 1) 统计该目录下有多少个按序编号的 txt（1.txt, 2.txt, ...）
+          // 1) Count sequentially numbered text files (1.txt, 2.txt, ...).
           numberOfSample = countSequentialTxtFiles(baseDir);
           if (numberOfSample == 0){
               System.out.println("⚠️ 目录没有发现 1.txt, 2.txt... : " + baseDir);
               continue;
           }
 
-          // 2) 生成该目录下的文件列表
+          // 2) Build the list of input files for this directory.
           listChromosomeFilePaths = create_Strings(numberOfSample, baseDir);
 
-          // 3) 为该目录准备一个独立的输出文件名（用目录最后一段做标签）
-          String label = baseDir.replace('\\','/'); // 统一分隔符
+          // 3) Create a separate output filename using the directory's last component as its label.
+          String label = baseDir.replace('\\','/'); // Normalize path separators.
           int lastSlash = label.lastIndexOf('/');
-          label = (lastSlash >= 0) ? label.substring(lastSlash + 1) : label; // 取最后一段
+          label = (lastSlash >= 0) ? label.substring(lastSlash + 1) : label; // Keep the last component.
 
-          // 统一结果目录
+          // Use the shared results directory.
           java.io.File resultDir = new java.io.File(RESULT_DIR);
           resultDir.mkdirs();
 
@@ -105,7 +105,7 @@ public class ComputeWriteC2 {
           System.out.println("▶ Output file:       " + outPath.getAbsolutePath());
           System.out.println("========================");
 
-          // 开始写文件到 RESULT 目录
+          // Write the output file to the RESULT directory.
           try (FileWriter fw = new FileWriter(outPath);
               PrintWriter out = new PrintWriter(new BufferedWriter(fw))) {
 
@@ -131,7 +131,7 @@ public class ComputeWriteC2 {
 
                       double freq = probability(vectorOfBinary); // 0~1
                       System.out.println("  Final link probability: " + freq);
-                      out.println(freq * 100.0); // 与你原始逻辑保持一致：输出百分比
+                      out.println(freq * 100.0); // Preserve the original behavior: write percentages.
                   }
               }
           }

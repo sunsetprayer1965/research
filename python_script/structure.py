@@ -48,10 +48,10 @@ def interpolate_chromosomes(X, lengths, eps=1e-1, smooth=0):
     
     return smoothed_X
 
-# 16条染色体长度
+# Lengths of the 16 chromosomes.
 theLengths = np.array([24, 82, 32, 154, 58, 28, 110, 57, 44, 75, 67, 108, 93, 79, 110, 95])
 
-# === 只新增：循环处理四个文件 ===
+# === Process four files in a loop ===
 files = ["PM1.structure", "PM2.structure", "mds.structure", "nmds.structure"]
 
 for fname in files:
@@ -59,10 +59,10 @@ for fname in files:
         print(f"[WARN] {fname} 不存在（注意大小写）——跳过")
         continue
 
-    # Load coordinate data（默认按任意空白分隔更稳）
+    # Load coordinates, using arbitrary whitespace as the delimiter.
     coordinates = np.loadtxt(fname)
 
-    # 逐条切分出16条染色体坐标
+    # Split the coordinates into 16 chromosomes.
     chromosome_data = []
     start, end = 0, 0
     for length in theLengths:
@@ -74,17 +74,17 @@ for fname in files:
         ))
         start = end
 
-    # RBF 插值
+    # Interpolate with radial basis functions (RBF).
     chroms = interpolate_chromosomes(coordinates, theLengths)
     if chroms is None:
         print(f"[ERROR] 插值失败：{fname}，已跳过绘图。")
         continue
 
-    # 绘图
+    # Plot the structure.
     fig = plt.figure(figsize=(12, 10))
     ax = fig.add_subplot(111, projection='3d')
 
-    # 配色与标签
+    # Colors and labels.
     colors = [
         'r', 'g', 'b', 'c', 'm', 'y', 'k', 'orange', 
         'purple', 'pink', 'lime', 'teal', 'brown', 'navy', 'gold', 'grey'
@@ -105,11 +105,11 @@ for fname in files:
     title = f'inferred_3d_structures_{stem}_HindIII+fdr1%_william'
     plt.title(title)
 
-    # 先保存，再show（防止无显示环境导致保存失败）
+    # Save before showing, so headless environments can still write the image.
     out_png = f'{title}.png'
     plt.savefig(out_png, dpi=300)
     print(f"[OK] 保存图片 -> {out_png}")
 
-    # 若在本地有GUI，依然可以显示；没有也不会影响保存
+    # Display the plot when a local GUI is available; saving does not depend on it.
     plt.show()
     plt.close()

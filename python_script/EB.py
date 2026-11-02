@@ -54,7 +54,7 @@ for i in range(120):
 eb_matrix = eb_matrix*100.0
 
 
-# 保存成4列txt
+# Save the estimates as a four-column text file.
 np.savetxt(OUT_FILE, eb_matrix, fmt="%.6f", delimiter="\t",
            header="MDS\tNMDS\tPM1\tPM2", comments='')
 

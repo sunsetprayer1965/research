@@ -3,14 +3,14 @@ import numpy as np
 
 import pandas as pd
 
-# ADDED: 需要处理的4个文件（注意大小写要与磁盘一致）
+# ADDED: Files to process (match filename capitalization exactly).
 files = ['MDS', 'NMDS', 'PM1', 'PM2']
 
 # Define the chromosome grouping criteria
 chromosome_counts = [24,82,32,154,58,28,110,57,44,75,67,108,93,79,110,95]  # Number of rows for each chromosome
 
 for base in files:
-    output_data = []  # 每个文件单独的输出缓冲
+    output_data = []  # Separate output buffer for each file.
     # Load your data (replace 'your_file.csv' with your actual file path)
     # Assuming your file is tab-delimited and has no header
     df = pd.read_csv(f'{base}.structure', header=None, delim_whitespace=True)
@@ -37,7 +37,7 @@ for base in files:
 
     # Save the final output
     # Write the final data to a CSV file
-    out_name = f'{base}.coordinate.txt'  # ADDED: 输出文件按输入前缀命名
+    out_name = f'{base}.coordinate.txt'  # ADDED: Name the output after the input prefix.
     with open(out_name, 'w', newline='') as f:
         for row in output_data:
             if row:  # Write regular rows
