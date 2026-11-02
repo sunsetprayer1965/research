@@ -1,5 +1,6 @@
 import numpy as np
 from itertools import combinations
+from pathlib import Path
 
 # =========================================================
 # Utilities: validate boundaries and optionally clip values (the paper requires 0 < p < 1, or derivatives diverge).
@@ -261,8 +262,9 @@ def pretty_print(results, zero_const=0.005):
 if __name__ == "__main__":
     # 1) Load the named files and convert percentages to proportions from 0 to 1.
     #    Replace the filenames as needed; include only the available inputs.
-    r1 = np.loadtxt('Panel_1_linking_frequency.txt')
-    r2 = np.loadtxt('Panel_2_linking_frequency.txt')
+    script_dir = Path(__file__).resolve().parent
+    r1 = np.loadtxt(script_dir / 'panel_1_max.txt')
+    r2 = np.loadtxt(script_dir / 'panel_2_max.txt')
 
     # r3 = np.loadtxt('msplMDS_linking_number.txt')
     # r4 = np.loadtxt('msplNMDS_linking_number.txt')

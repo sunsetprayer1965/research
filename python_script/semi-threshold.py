@@ -1,5 +1,8 @@
 import numpy as np
 from itertools import combinations
+from pathlib import Path
+
+SCRIPT_DIR = Path(__file__).resolve().parent
 
 # =========================
 # Basic utilities (strict mode does not clip values at the [0, 1] boundaries by default).
@@ -259,8 +262,8 @@ def pretty_print(results):
 # =========================
 # Load the four reconstructions.
 # =========================
-r1 = np.loadtxt('panel_1_max.txt')
-r2 = np.loadtxt('panel_2_max.txt')
+r1 = np.loadtxt(SCRIPT_DIR / 'panel_1_max.txt')
+r2 = np.loadtxt(SCRIPT_DIR / 'panel_2_max.txt')
 
 
 names = ["Panel 1", "Panel 2"]
@@ -315,11 +318,11 @@ def scan_and_save_F(p, q, N, mode, G_name, save_dir=".",
     save_path = os.path.join(save_dir, filename)
     plt.savefig(save_path, dpi=300, bbox_inches='tight')
     plt.close()
-    print(f"✅ 图像已保存到 {save_path}")
+    print(f"picture saved at {save_path}")
 
 
-# Save the plots under /app.
-out_dir = "/app"
+# Save the plots alongside this script and its input files.
+out_dir = str(SCRIPT_DIR)
 
 scan_and_save_F(r1, r2, N, "untransformed", "G1", save_dir=out_dir)
 scan_and_save_F(r1, r2, N, "untransformed", "G2", save_dir=out_dir)
